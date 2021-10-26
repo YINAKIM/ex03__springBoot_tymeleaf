@@ -32,5 +32,14 @@
          -->
         </li>
     </ul>
+
+
+
+    <h3>thymeleaf내장객체 사용하기</h3>
+    <ul>
+        <li th:each="dto : ${list}">
+           [[${dto.sno}]] ---------- [[${#temporals.format(dto.regTime, 'yyyy/MM/dd')}]]
+        </li>
+    </ul>
 </body>
 </html>
