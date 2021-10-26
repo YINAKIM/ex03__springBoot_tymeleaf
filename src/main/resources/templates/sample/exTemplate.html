@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout/layout1 :: setContent( ~{this::content} )}">
+
+    <th:block th:fragment="content">
+        <h1>exTemplate Page</h1>
+        <h1>여기는 컨텐츠가 오는 자리다</h1>
+        <p>전체적인 레이아웃은 layout1.html의 내용, wndrks CONTENT영욕은 exTemplate.html의 내용으로 변경된다</p>
+        <p>전체레이아웃페이지 작성하고, 필요한부분만 템플릿으로 적용한다.</p>
+    </th:block>
+
+</th:block>
