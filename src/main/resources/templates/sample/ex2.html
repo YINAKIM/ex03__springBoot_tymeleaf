@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ex2</title>
+    <style>
+        .target{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>ex1 - each로 model에서 데이터 꺼내서 출력</h1>
+
+    <h3>index는 0부터</h3>
+    <ul>
+        <li th:each="dto,state : ${list}">
+            [[${state.index}]] ---------- [[${dto}]]
+        </li>
+    </ul>
+
+
+    <h3>count는 1부터</h3>
+    <ul>
+        <li th:each="dto,state : ${list}">
+            [[${state.count}]] ********** [[${dto}]]
+        </li>
+    </ul>
+
+    <h3>if 사용</h3>
+    <ul>
+        <li th:each="dto, state : ${list}" th:if="${dto.sno % 5 == 0}">[[${dto}]]</li>
+    </ul>
+
+    <h3>if unless로 제어문처리</h3>
+    <ul>
+        <li th:each="dto, state : ${list}">
+            <span th:if="${dto.sno % 5  == 0 }" th:text="${'------------------------------'+dto.sno}"></span>
+            <span th:unless="${dto.sno % 5  == 0 }" th:text="${dto.first}"></span>
+
+        </li>
+    </ul>
+
+
+    <h3>삼항연산자 사용하기</h3>
+    <ul>
+        <li th:each="dto, state : ${list}" th:text="${dto.sno % 5 == 0}? ${dto.sno}">
+        </li>
+    </ul>
+
+    <h3>삼항연산자 사용하기 - sno가 5로 딱떨어지면 sno만출력, 다른건 first출력한다면?</h3>
+    <ul>
+        <li th:each="dto, state : ${list}" th:text="${dto.sno % 5 == 0}? ${dto.sno} : ${dto.first}">
+        </li>
+    </ul>
+
+    <h3>삼항연산자 사용하기 - sno가 5로 딱떨어지면 CSS적용?</h3>
+    <ul>
+        <li th:each="dto, state : ${list}" th:class="${dto.sno % 5 == 0}?'target'" th:text="${dto}">
+        </li>
+    </ul>
+
+    <h3>th:blobk적용 - th:block은 실제화면에서는 html로 처리되지않는다. 따라서 루프등을 처리할 때 많이 사용된다.</h3>
+    <ul>
+        <th:block th:each="dto : ${list}">
+            <li th:text="${dto.sno % 5 == 0}?${dto.sno}:${dto.first}"></li>
+        </th:block>
+
+
+    </ul>
+
+</body>
+</html>

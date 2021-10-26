@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ex3</title>
+</head>
+<body>
+<h1 th:text="${result}"></h1>
+<h1 th:text="${dto}"></h1>
+
+<script th:inline="javascript">
+    var msg = [[${result}]]; // addAttribute string --> ""가 알아서 붙은 string으로 반환됨
+    var dto = [[${dto}]]; // addAttribute object -->  JSON형태로 반환됨
+    var jsObjDTO = JSON.parse('\"'+[[${dto}]]+'\"'); // javascript의 object로 파싱해서 사용 가능 : ""붙여서 쓴것
+    console.log(jsObjDTO);
+    document.body.append(jsObjDTO);
+    /*
+    컨트롤러에서 addAttribute한걸 속성키값으로 표현식에 불러오면 js에서도 사용할 수 있다.
+    var msg = "success";
+    var dto = {"sno":100,"first":"First....100","last":"Last....100","regTime":"2021-10-27T00:39:33.349871"};
+    * */
+</script>
+</body>
+</html>
